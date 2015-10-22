@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		842CD35D1BCFEA9E00EE79FF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CD35C1BCFEA9E00EE79FF /* User.swift */; settings = {ASSET_TAGS = (); }; };
 		842CD35F1BCFEC3600EE79FF /* AuthorizationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CD35E1BCFEC3600EE79FF /* AuthorizationError.swift */; settings = {ASSET_TAGS = (); }; };
+		845AF5751BD8F2680029A607 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845AF5741BD8F2680029A607 /* NetworkManager.swift */; settings = {ASSET_TAGS = (); }; };
+		845AF5771BD909500029A607 /* AuthPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845AF5761BD909500029A607 /* AuthPath.swift */; settings = {ASSET_TAGS = (); }; };
 		84D314781BCFD9C800912D28 /* RWAuth.h in Headers */ = {isa = PBXBuildFile; fileRef = 84D314771BCFD9C800912D28 /* RWAuth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84D3147F1BCFD9C800912D28 /* RWAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D314741BCFD9C800912D28 /* RWAuth.framework */; settings = {ASSET_TAGS = (); }; };
 		84D314841BCFD9C800912D28 /* RWAuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D314831BCFD9C800912D28 /* RWAuthTests.swift */; };
@@ -27,6 +29,8 @@
 /* Begin PBXFileReference section */
 		842CD35C1BCFEA9E00EE79FF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		842CD35E1BCFEC3600EE79FF /* AuthorizationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationError.swift; sourceTree = "<group>"; };
+		845AF5741BD8F2680029A607 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		845AF5761BD909500029A607 /* AuthPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthPath.swift; sourceTree = "<group>"; };
 		84D314741BCFD9C800912D28 /* RWAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RWAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D314771BCFD9C800912D28 /* RWAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWAuth.h; sourceTree = "<group>"; };
 		84D314791BCFD9C800912D28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -68,6 +72,8 @@
 			children = (
 				842CD35C1BCFEA9E00EE79FF /* User.swift */,
 				842CD35E1BCFEC3600EE79FF /* AuthorizationError.swift */,
+				845AF5741BD8F2680029A607 /* NetworkManager.swift */,
+				845AF5761BD909500029A607 /* AuthPath.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -216,6 +222,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				845AF5771BD909500029A607 /* AuthPath.swift in Sources */,
+				845AF5751BD8F2680029A607 /* NetworkManager.swift in Sources */,
 				842CD35F1BCFEC3600EE79FF /* AuthorizationError.swift in Sources */,
 				842CD35D1BCFEA9E00EE79FF /* User.swift in Sources */,
 			);
