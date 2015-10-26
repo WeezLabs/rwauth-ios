@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum AuthorizationError: ErrorType{
+public enum AuthorizationError: ErrorType{
     case IncorrectEmail
     case IncorrectUserName
     case IncorrectPassword
