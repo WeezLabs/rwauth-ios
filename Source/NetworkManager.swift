@@ -14,7 +14,7 @@ class NetworkManager: NSObject {
     static let scheme = "http"
     static let host = "exampledomain.com"
     
-    let session: NSURLSession
+    var session: NSURLSession
     
     enum HTTPMethod: String {
         case POST = "POST"
