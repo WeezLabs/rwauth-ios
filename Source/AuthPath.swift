@@ -9,9 +9,9 @@
 import Foundation
 
 enum AuthPath: String{
-    case signUpPath = "users/signup"
-    case signInPath = "users/signip"
-    case signOutPath = "users/signout"
-    case passwordRecoveryPath = "users/password_recovery"
-    case refreshTokenPath = "users/accesstoken/refresh"
+    case signUpPath = "/users/signup"
+    case signInPath = "/users/signip"
+    case signOutPath = "/users/signout"
+    case passwordRecoveryPath = "/users/password_recovery"
+    case refreshTokenPath = "/users/accesstoken/refresh"
 }

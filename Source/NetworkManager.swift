@@ -10,24 +10,29 @@ import Foundation
 
 class NetworkManager: NSObject {
     
-    static let sharedManager: NetworkManager = NetworkManager()
     static let scheme = "http"
     static let host = "exampledomain.com"
     
-    var session: NSURLSession
+    private static var storedSession: NSURLSession?
+    static var session: NSURLSession? {
+        get {
+            guard let session = storedSession else {
+                let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+                return NSURLSession(configuration: sessionConfiguration)
+            }
+            return session
+        }
+        set(newSession) {
+            storedSession = newSession
+        }
+    }
     
     enum HTTPMethod: String {
         case POST = "POST"
         case PUT = "PUT"
     }
     
-    override init() {
-        let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        self.session = NSURLSession(configuration: sessionConfiguration)
-    }
-    
     class func request(method: HTTPMethod, path: AuthPath, body: [String: String], completion: (response: Any) -> Void) {
-        let session = NetworkManager.sharedManager.session
         var response = Response<String, NSError>()
         guard let url = NSURL(scheme: scheme, host: host, path: path.rawValue) else {
             let result = Result<String, NSError>.Failure(NetworkError.InvalidURL as NSError)
@@ -41,7 +46,7 @@ class NetworkManager: NSObject {
         response.request = request
         
         let bodyData = try? NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions(rawValue: 0))
-        let uploadTask = session.uploadTaskWithRequest(request, fromData: bodyData) {
+        let uploadTask = session!.uploadTaskWithRequest(request, fromData: bodyData) {
             (innerData: NSData?, innerResponse: NSURLResponse?, error: NSError?) -> Void in
             let result: Result<String, NSError>
             

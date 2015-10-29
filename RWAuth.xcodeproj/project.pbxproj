@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		841044ED1BE1468A00AEBA59 /* MockSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841044EC1BE1468A00AEBA59 /* MockSession.swift */; settings = {ASSET_TAGS = (); }; };
-		841044EF1BE1483F00AEBA59 /* FakeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841044EE1BE1483F00AEBA59 /* FakeRequest.swift */; settings = {ASSET_TAGS = (); }; };
-		841044F11BE1485000AEBA59 /* FakeAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841044F01BE1485000AEBA59 /* FakeAnswer.swift */; settings = {ASSET_TAGS = (); }; };
 		842CD35D1BCFEA9E00EE79FF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CD35C1BCFEA9E00EE79FF /* User.swift */; settings = {ASSET_TAGS = (); }; };
 		842CD35F1BCFEC3600EE79FF /* AuthorizationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CD35E1BCFEC3600EE79FF /* AuthorizationError.swift */; settings = {ASSET_TAGS = (); }; };
 		8455BE791BDA5442003EA0FB /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455BE781BDA5442003EA0FB /* Response.swift */; settings = {ASSET_TAGS = (); }; };
@@ -19,6 +16,10 @@
 		845AF57B1BD9239B0029A607 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845AF57A1BD9239B0029A607 /* NetworkManagerTests.swift */; settings = {ASSET_TAGS = (); }; };
 		845AF57D1BD929760029A607 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845AF57C1BD929760029A607 /* UserTests.swift */; settings = {ASSET_TAGS = (); }; };
 		846DA5381BDE65C4006EB7CA /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DA5371BDE65C4006EB7CA /* NetworkError.swift */; settings = {ASSET_TAGS = (); }; };
+		8497E57D1BE257A6008B9E35 /* FakeAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497E57A1BE257A6008B9E35 /* FakeAnswer.swift */; settings = {ASSET_TAGS = (); }; };
+		8497E57E1BE257A6008B9E35 /* FakeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497E57B1BE257A6008B9E35 /* FakeRequest.swift */; settings = {ASSET_TAGS = (); }; };
+		8497E57F1BE257A6008B9E35 /* MockSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497E57C1BE257A6008B9E35 /* MockSession.swift */; settings = {ASSET_TAGS = (); }; };
+		8497E5811BE26575008B9E35 /* MockTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497E5801BE26575008B9E35 /* MockTask.swift */; settings = {ASSET_TAGS = (); }; };
 		84D314781BCFD9C800912D28 /* RWAuth.h in Headers */ = {isa = PBXBuildFile; fileRef = 84D314771BCFD9C800912D28 /* RWAuth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84D3147F1BCFD9C800912D28 /* RWAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D314741BCFD9C800912D28 /* RWAuth.framework */; settings = {ASSET_TAGS = (); }; };
 		84D314841BCFD9C800912D28 /* RWAuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D314831BCFD9C800912D28 /* RWAuthTests.swift */; };
@@ -35,9 +36,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		841044EC1BE1468A00AEBA59 /* MockSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSession.swift; sourceTree = "<group>"; };
-		841044EE1BE1483F00AEBA59 /* FakeRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeRequest.swift; sourceTree = "<group>"; };
-		841044F01BE1485000AEBA59 /* FakeAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeAnswer.swift; sourceTree = "<group>"; };
 		842CD35C1BCFEA9E00EE79FF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		842CD35E1BCFEC3600EE79FF /* AuthorizationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationError.swift; sourceTree = "<group>"; };
 		8455BE781BDA5442003EA0FB /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
@@ -47,6 +45,10 @@
 		845AF57A1BD9239B0029A607 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		845AF57C1BD929760029A607 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		846DA5371BDE65C4006EB7CA /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		8497E57A1BE257A6008B9E35 /* FakeAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeAnswer.swift; sourceTree = "<group>"; };
+		8497E57B1BE257A6008B9E35 /* FakeRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeRequest.swift; sourceTree = "<group>"; };
+		8497E57C1BE257A6008B9E35 /* MockSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSession.swift; sourceTree = "<group>"; };
+		8497E5801BE26575008B9E35 /* MockTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockTask.swift; sourceTree = "<group>"; };
 		84D314741BCFD9C800912D28 /* RWAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RWAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D314771BCFD9C800912D28 /* RWAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWAuth.h; sourceTree = "<group>"; };
 		84D314791BCFD9C800912D28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -86,6 +88,26 @@
 		842CD38E1BCFF9C400EE79FF /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				8497E5821BE2657B008B9E35 /* HTTPMock */,
+				8497E5831BE265A6008B9E35 /* Auth */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		8497E5821BE2657B008B9E35 /* HTTPMock */ = {
+			isa = PBXGroup;
+			children = (
+				8497E57A1BE257A6008B9E35 /* FakeAnswer.swift */,
+				8497E57B1BE257A6008B9E35 /* FakeRequest.swift */,
+				8497E57C1BE257A6008B9E35 /* MockSession.swift */,
+				8497E5801BE26575008B9E35 /* MockTask.swift */,
+			);
+			name = HTTPMock;
+			sourceTree = "<group>";
+		};
+		8497E5831BE265A6008B9E35 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
 				842CD35C1BCFEA9E00EE79FF /* User.swift */,
 				842CD35E1BCFEC3600EE79FF /* AuthorizationError.swift */,
 				846DA5371BDE65C4006EB7CA /* NetworkError.swift */,
@@ -94,7 +116,7 @@
 				8455BE781BDA5442003EA0FB /* Response.swift */,
 				8455BE7C1BDA623A003EA0FB /* Result.swift */,
 			);
-			name = Core;
+			name = Auth;
 			sourceTree = "<group>";
 		};
 		84D3146A1BCFD9C800912D28 = {
@@ -127,9 +149,6 @@
 		84D314821BCFD9C800912D28 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				841044F01BE1485000AEBA59 /* FakeAnswer.swift */,
-				841044EE1BE1483F00AEBA59 /* FakeRequest.swift */,
-				841044EC1BE1468A00AEBA59 /* MockSession.swift */,
 				84D314831BCFD9C800912D28 /* RWAuthTests.swift */,
 				845AF57A1BD9239B0029A607 /* NetworkManagerTests.swift */,
 				845AF57C1BD929760029A607 /* UserTests.swift */,
@@ -248,12 +267,13 @@
 			files = (
 				8455BE7D1BDA623A003EA0FB /* Result.swift in Sources */,
 				846DA5381BDE65C4006EB7CA /* NetworkError.swift in Sources */,
-				841044F11BE1485000AEBA59 /* FakeAnswer.swift in Sources */,
-				841044ED1BE1468A00AEBA59 /* MockSession.swift in Sources */,
+				8497E57D1BE257A6008B9E35 /* FakeAnswer.swift in Sources */,
 				845AF5771BD909500029A607 /* AuthPath.swift in Sources */,
 				845AF5751BD8F2680029A607 /* NetworkManager.swift in Sources */,
+				8497E5811BE26575008B9E35 /* MockTask.swift in Sources */,
 				842CD35F1BCFEC3600EE79FF /* AuthorizationError.swift in Sources */,
-				841044EF1BE1483F00AEBA59 /* FakeRequest.swift in Sources */,
+				8497E57F1BE257A6008B9E35 /* MockSession.swift in Sources */,
+				8497E57E1BE257A6008B9E35 /* FakeRequest.swift in Sources */,
 				842CD35D1BCFEA9E00EE79FF /* User.swift in Sources */,
 				8455BE791BDA5442003EA0FB /* Response.swift in Sources */,
 			);
@@ -320,6 +340,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -361,6 +382,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

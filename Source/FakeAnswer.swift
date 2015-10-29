@@ -9,6 +9,11 @@
 import Foundation
 
 struct FakeAnswer {
-    //    var answerCode?
-    //    var answerBody?
+    var answerCode: Int
+    var answerBody: [String: Any]
+    
+    init(code: Int, body: [String: Any]) {
+        answerCode = code
+        answerBody = body
+    }
 }
