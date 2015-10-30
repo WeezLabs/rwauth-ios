@@ -12,9 +12,13 @@ class MockSession: NSURLSession {
     var fakeRequest: FakeRequest?
     var fakeAnswer: FakeAnswer?
     
-    func stubRequest(method: String, url: String, requestBody: [String: Any], returnCode: Int, answerBody: [String: Any]) -> Void {
+    func stubRequest(method: String, url: String, requestBody: [String: AnyObject], returnCode: Int, answerBody: [String: AnyObject]) -> Void {
         fakeRequest = FakeRequest(method: method, url: url, body: requestBody)
         fakeAnswer = FakeAnswer(code: returnCode, body: answerBody)
+    }
+    
+    func stub() {
+        
     }
     
     override class func sharedSession() -> NSURLSession {
@@ -27,27 +31,22 @@ class MockSession: NSURLSession {
             let invalidTask = MockTask(data: nil, urlResponse: nil, error: nil, completionHandler: completionHandler)
             
             guard let fakeRequest = fakeRequest, fakeAnswer = fakeAnswer else { return invalidTask }
-            
             guard let bodyData = bodyData else { return invalidTask }
-            
             guard let bodyString = String(data: bodyData, encoding: NSUTF8StringEncoding) else { return invalidTask }
             
-            
-            guard let stubedBodyData = try? NSJSONSerialization.dataWithJSONObject(fakeRequest.requestBody as! AnyObject, options: NSJSONWritingOptions(rawValue: 0)) else { return invalidTask }
+            guard let stubedBodyData = try? NSJSONSerialization.dataWithJSONObject(fakeRequest.requestBody, options: NSJSONWritingOptions(rawValue: 0)) else { return invalidTask }
             guard let stubedBodyString = String(data: stubedBodyData, encoding: NSUTF8StringEncoding) else { return invalidTask }
             
             guard bodyString == stubedBodyString else { return invalidTask }
             
             
             // TODO:
-            let responseData = try? NSJSONSerialization.dataWithJSONObject(fakeAnswer.answerBody as! AnyObject, options: NSJSONWritingOptions(rawValue: 0))
+            let responseData = try? NSJSONSerialization.dataWithJSONObject(fakeAnswer.answerBody, options: NSJSONWritingOptions(rawValue: 0))
             
             let urlResponse = NSHTTPURLResponse(URL: request.URL!, statusCode: 200, HTTPVersion: nil, headerFields: nil)
             
             return MockTask(data: responseData, urlResponse: urlResponse, error: nil) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
                 completionHandler(data, response, error)
             }
-            
-
     }
 }

@@ -10,9 +10,9 @@ import Foundation
 
 struct FakeAnswer {
     var answerCode: Int
-    var answerBody: [String: Any]
+    var answerBody: [String: AnyObject]
     
-    init(code: Int, body: [String: Any]) {
+    init(code: Int, body: [String: AnyObject]) {
         answerCode = code
         answerBody = body
     }

@@ -11,29 +11,31 @@ import XCTest
 
 class NetworkManagerTests: XCTestCase {
     
-    var session: MockSession?
+//    var session: NSURLSession?
 
     override func setUp() {
         super.setUp()
-        let mock = MockSession()
-        NetworkManager.session = mock
-        session = mock
+//        let mock = MockSession()
+//        NetworkManager.session = mock
+//        session = mock as MockSession
     }
     
     override func tearDown() {
         super.tearDown()
-        session = nil
+//        session = nil
     }
     
     func testSuccessPost() {
         // Given
         let stubbedURL = "http://exampledomain.com" + AuthPath.signInPath.rawValue
-        let requestBody = ["user": "name"]
-        let answerBody = ["status": "OK"]
-        print("\(session)")
+        let requestBody: [String: AnyObject] = ["user": "name"]
+        let answerBody: [String: AnyObject] = ["status": "OK"]
         
-        // FIXME:
-        session?.stubRequest("POST", url: stubbedURL, requestBody: requestBody, returnCode: 200, answerBody: answerBody)
+        let mock = MockSession()
+        NetworkManager.session = mock
+        mock.stub()
+        mock.stubRequest("POST", url: stubbedURL, requestBody: requestBody, returnCode: 200, answerBody: answerBody)
+        
         let expectation = expectationWithDescription("request should be successful")
         
         // When
