@@ -14,7 +14,7 @@ public struct Response<Value, Error: ErrorType> {
     public var data: NSData?
     public var result: Result<Value, Error>?
     
-    public init(request: NSMutableURLRequest?, response:NSURLResponse?, data: NSData?, result: Result<Value, Error>?){
+    public init(request: NSMutableURLRequest, response:NSURLResponse?, data: NSData?, result: Result<Value, Error>?){
         self.request = request
         self.response = response
         self.data = data
