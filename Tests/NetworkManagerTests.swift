@@ -10,19 +10,13 @@ import XCTest
 @testable import RWAuth
 
 class NetworkManagerTests: XCTestCase {
-    
-//    var session: NSURLSession?
 
     override func setUp() {
         super.setUp()
-//        let mock = MockSession()
-//        NetworkManager.session = mock
-//        session = mock as MockSession
     }
     
     override func tearDown() {
         super.tearDown()
-//        session = nil
     }
     
     func testSuccessPost() {
@@ -37,11 +31,11 @@ class NetworkManagerTests: XCTestCase {
         mock.stubRequest("POST", url: stubbedURL, requestBody: requestBody, returnCode: 200, answerBody: answerBody)
         
         let expectation = expectationWithDescription("request should be successful")
-        var response: Response<String, NSError>? = nil
+        var response: Response<Any, NSError>? = nil
         
         // When
         NetworkManager.request(.POST, path: .signInPath, body: ["user": "name"]) { closureResponse in
-            response = closureResponse as! Response<String, NSError>
+            response = closureResponse as! Response<Any, NSError>
             expectation.fulfill()
         }
         
@@ -53,6 +47,12 @@ class NetworkManagerTests: XCTestCase {
             XCTAssertNotNil(response.response, "response should not be nil")
             XCTAssertNotNil(response.data, "data should not be nil")
             XCTAssertTrue(response.result!.isSuccess, "result should be success")
+            
+            guard let value = response.result!.value else {
+                XCTFail("result value should not be nil")
+                return
+            }
+            XCTAssertEqual(value as! NSDictionary, answerBody as NSDictionary, "Should be equal")
         } else {
             XCTFail("response should not be nil")
         }

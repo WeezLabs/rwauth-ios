@@ -33,9 +33,9 @@ class NetworkManager: NSObject {
     }
     
     class func request(method: HTTPMethod, path: AuthPath, body: [String: AnyObject], completion: (response: Any) -> Void) {
-        var response = Response<String, NSError>()
+        var response = Response<Any, NSError>()
         guard let url = NSURL(scheme: scheme, host: host, path: path.rawValue) else {
-            let result = Result<String, NSError>.Failure(NetworkError.InvalidURL as NSError)
+            let result = Result<Any, NSError>.Failure(NetworkError.InvalidURL as NSError)
             response.result = result
             completion(response: response)
             return
@@ -48,18 +48,22 @@ class NetworkManager: NSObject {
         let bodyData = try? NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions(rawValue: 0))
         let uploadTask = session!.uploadTaskWithRequest(request, fromData: bodyData) {
             (innerData: NSData?, innerResponse: NSURLResponse?, error: NSError?) -> Void in
-            let result: Result<String, NSError>
+            let result: Result<Any, NSError>
             
             if let error = error {
                 result = Result.Failure(error)
+            } else if innerData == nil || innerResponse == nil {
+                result = Result.Failure(NSError(domain: kCFErrorDomainCFNetwork as String, code: 400, userInfo: nil))
             } else {
-                result = Result.Success("Success")
+                if let successDict = try? NSJSONSerialization.JSONObjectWithData(innerData!, options: NSJSONReadingOptions(rawValue: 0)){
+                    result = Result.Success(successDict)
+                }else {
+                    result = Result.Failure(NSError(domain: "com.weezlabs.rwauth", code: 1, userInfo: [NSLocalizedDescriptionKey: "Serialization error"]))
+                }
             }
-            
             response = Response(request: request, response: innerResponse, data: innerData, result: result)
             completion(response: response)
         }
-        
         uploadTask.resume()
     }
 }
