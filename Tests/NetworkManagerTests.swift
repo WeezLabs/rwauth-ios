@@ -92,7 +92,7 @@ class NetworkManagerTests: XCTestCase {
             XCTAssertEqual(urlResponse.statusCode, statusCode, "request should be failed")
             XCTAssertTrue(response.result!.isFailure, "result should be failed")
             
-            guard let error = response.result!.error else {
+            guard let _ = response.result!.error else {
                 XCTFail("result error should not be nil")
                 return
             }
