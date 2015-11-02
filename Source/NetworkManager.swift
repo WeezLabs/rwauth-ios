@@ -56,8 +56,16 @@ class NetworkManager: NSObject {
                 result = Result.Failure(NSError(domain: kCFErrorDomainCFNetwork as String, code: 400, userInfo: nil))
             } else {
                 if let successDict = try? NSJSONSerialization.JSONObjectWithData(innerData!, options: NSJSONReadingOptions(rawValue: 0)){
-                    result = Result.Success(successDict)
-                }else {
+                    let httpResponse = innerResponse as! NSHTTPURLResponse
+                    if httpResponse.statusCode >= 400 && httpResponse.statusCode < 500 {
+                        result = Result.Failure(NSError(domain: kCFErrorDomainCFNetwork as String, code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: "Client Error"]))
+                        
+                    } else if httpResponse.statusCode >= 500 && httpResponse.statusCode < 600{
+                        result = Result.Failure(NSError(domain: kCFErrorDomainCFNetwork as String, code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: "Server Error"]))
+                    } else {
+                        result = Result.Success(successDict)
+                    }
+                } else {
                     result = Result.Failure(NSError(domain: "com.weezlabs.rwauth", code: 1, userInfo: [NSLocalizedDescriptionKey: "Serialization error"]))
                 }
             }
