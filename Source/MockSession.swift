@@ -17,10 +17,6 @@ class MockSession: NSURLSession {
         fakeAnswer = FakeAnswer(code: returnCode, body: answerBody)
     }
     
-    func stub() {
-        
-    }
-    
     override class func sharedSession() -> NSURLSession {
         return MockSession()
     }
@@ -36,6 +32,7 @@ class MockSession: NSURLSession {
             guard let bodyData = bodyData else { return invalidTask }
             guard let bodyString = String(data: bodyData, encoding: NSUTF8StringEncoding) else { return invalidTask }
             guard let url = request.URL else { return invalidTask }
+            guard url.absoluteString == fakeRequest.requestURL else { return invalidTask }
             
             guard let stubedBodyData = try? NSJSONSerialization.dataWithJSONObject(fakeRequest.requestBody, options: NSJSONWritingOptions(rawValue: 0)) else { return invalidTask }
             guard let stubedBodyString = String(data: stubedBodyData, encoding: NSUTF8StringEncoding) else { return invalidTask }

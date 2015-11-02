@@ -10,19 +10,19 @@ import Foundation
 
 public struct Response<Value, Error: ErrorType> {
     public var request: NSMutableURLRequest?
-    public var response: NSURLResponse?
+    public var response: NSHTTPURLResponse?
     public var data: NSData?
     public var result: Result<Value, Error>?
     
     public init(request: NSMutableURLRequest, response:NSURLResponse?, data: NSData?, result: Result<Value, Error>?){
         self.request = request
-        self.response = response
+        self.response = response as? NSHTTPURLResponse
         self.data = data
         self.result = result
     }
     
     public init(){
-        
+    
     }
 }
 

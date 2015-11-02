@@ -32,7 +32,7 @@ class NetworkManager: NSObject {
         case PUT = "PUT"
     }
     
-    class func request(method: HTTPMethod, path: AuthPath, body: [String: AnyObject], completion: (response: Any) -> Void) {
+    class func request(method: HTTPMethod, path: AuthPath, body: [String: AnyObject], completion: (response: Response<Any, NSError>) -> Void) {
         var response = Response<Any, NSError>()
         guard let url = NSURL(scheme: scheme, host: host, path: path.rawValue) else {
             let result = Result<Any, NSError>.Failure(NetworkError.InvalidURL as NSError)

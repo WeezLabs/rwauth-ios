@@ -40,9 +40,21 @@ public class User: NSObject {
         
     }
     
-    public class func checkEmail(email: String, isAsync : Bool = true, complition: (error: NSError?) -> Void){
-        
-    
+    public class func checkEmail(email: String, isAsync : Bool = true, completion: (result: Result<Any, NSError>) -> Void){
+        NetworkManager.request(.POST, path: .checkEmail, body: ["email": email]) {response in
+            print("\(response.result) -RESULT")
+            if (response.result?.isSuccess == true) {
+                let result = Result<Any, NSError>.Success("Email doesn't exist")
+                completion(result: result)
+            } else if response.response?.statusCode == 409 {
+                let result = Result<Any, NSError>.Failure(NSError(domain: kCFErrorDomainCFNetwork as String, code: 409, userInfo: [NSLocalizedDescriptionKey: "User with such email exists"]))
+                completion(result: result)
+            } else if response.response?.statusCode == 400 {
+                let result = Result<Any, NSError>.Failure(NSError(domain: kCFErrorDomainCFNetwork as String, code: 400, userInfo: [NSLocalizedDescriptionKey: "Validation error"]))
+                completion(result: result)
+            } else {
+                completion(result: response.result!)
+            }
+        }
     }
-    
 }

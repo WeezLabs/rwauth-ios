@@ -7,22 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		842CD35D1BCFEA9E00EE79FF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CD35C1BCFEA9E00EE79FF /* User.swift */; settings = {ASSET_TAGS = (); }; };
-		842CD35F1BCFEC3600EE79FF /* AuthorizationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CD35E1BCFEC3600EE79FF /* AuthorizationError.swift */; settings = {ASSET_TAGS = (); }; };
-		8455BE791BDA5442003EA0FB /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455BE781BDA5442003EA0FB /* Response.swift */; settings = {ASSET_TAGS = (); }; };
-		8455BE7D1BDA623A003EA0FB /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455BE7C1BDA623A003EA0FB /* Result.swift */; settings = {ASSET_TAGS = (); }; };
-		845AF5751BD8F2680029A607 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845AF5741BD8F2680029A607 /* NetworkManager.swift */; settings = {ASSET_TAGS = (); }; };
-		845AF5771BD909500029A607 /* AuthPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845AF5761BD909500029A607 /* AuthPath.swift */; settings = {ASSET_TAGS = (); }; };
-		845AF57B1BD9239B0029A607 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845AF57A1BD9239B0029A607 /* NetworkManagerTests.swift */; settings = {ASSET_TAGS = (); }; };
-		845AF57D1BD929760029A607 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845AF57C1BD929760029A607 /* UserTests.swift */; settings = {ASSET_TAGS = (); }; };
-		846DA5381BDE65C4006EB7CA /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DA5371BDE65C4006EB7CA /* NetworkError.swift */; settings = {ASSET_TAGS = (); }; };
-		8497E57D1BE257A6008B9E35 /* FakeAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497E57A1BE257A6008B9E35 /* FakeAnswer.swift */; settings = {ASSET_TAGS = (); }; };
-		8497E57E1BE257A6008B9E35 /* FakeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497E57B1BE257A6008B9E35 /* FakeRequest.swift */; settings = {ASSET_TAGS = (); }; };
-		8497E57F1BE257A6008B9E35 /* MockSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497E57C1BE257A6008B9E35 /* MockSession.swift */; settings = {ASSET_TAGS = (); }; };
-		8497E5811BE26575008B9E35 /* MockTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497E5801BE26575008B9E35 /* MockTask.swift */; settings = {ASSET_TAGS = (); }; };
+		842CD35D1BCFEA9E00EE79FF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CD35C1BCFEA9E00EE79FF /* User.swift */; };
+		842CD35F1BCFEC3600EE79FF /* AuthorizationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CD35E1BCFEC3600EE79FF /* AuthorizationError.swift */; };
+		8455BE791BDA5442003EA0FB /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455BE781BDA5442003EA0FB /* Response.swift */; };
+		8455BE7D1BDA623A003EA0FB /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455BE7C1BDA623A003EA0FB /* Result.swift */; };
+		845AF5751BD8F2680029A607 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845AF5741BD8F2680029A607 /* NetworkManager.swift */; };
+		845AF5771BD909500029A607 /* AuthPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845AF5761BD909500029A607 /* AuthPath.swift */; };
+		845AF57B1BD9239B0029A607 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845AF57A1BD9239B0029A607 /* NetworkManagerTests.swift */; };
+		845AF57D1BD929760029A607 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845AF57C1BD929760029A607 /* UserTests.swift */; };
+		846DA5381BDE65C4006EB7CA /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DA5371BDE65C4006EB7CA /* NetworkError.swift */; };
+		8497E57D1BE257A6008B9E35 /* FakeAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497E57A1BE257A6008B9E35 /* FakeAnswer.swift */; };
+		8497E57E1BE257A6008B9E35 /* FakeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497E57B1BE257A6008B9E35 /* FakeRequest.swift */; };
+		8497E57F1BE257A6008B9E35 /* MockSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497E57C1BE257A6008B9E35 /* MockSession.swift */; };
+		8497E5811BE26575008B9E35 /* MockTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497E5801BE26575008B9E35 /* MockTask.swift */; };
 		84D314781BCFD9C800912D28 /* RWAuth.h in Headers */ = {isa = PBXBuildFile; fileRef = 84D314771BCFD9C800912D28 /* RWAuth.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		84D3147F1BCFD9C800912D28 /* RWAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D314741BCFD9C800912D28 /* RWAuth.framework */; settings = {ASSET_TAGS = (); }; };
-		84D314841BCFD9C800912D28 /* RWAuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D314831BCFD9C800912D28 /* RWAuthTests.swift */; };
+		84D3147F1BCFD9C800912D28 /* RWAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D314741BCFD9C800912D28 /* RWAuth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +52,6 @@
 		84D314771BCFD9C800912D28 /* RWAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWAuth.h; sourceTree = "<group>"; };
 		84D314791BCFD9C800912D28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84D3147E1BCFD9C800912D28 /* RWAuthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RWAuthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		84D314831BCFD9C800912D28 /* RWAuthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RWAuthTests.swift; sourceTree = "<group>"; };
 		84D314851BCFD9C800912D28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,7 +147,6 @@
 		84D314821BCFD9C800912D28 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				84D314831BCFD9C800912D28 /* RWAuthTests.swift */,
 				845AF57A1BD9239B0029A607 /* NetworkManagerTests.swift */,
 				845AF57C1BD929760029A607 /* UserTests.swift */,
 				84D314851BCFD9C800912D28 /* Info.plist */,
@@ -285,7 +282,6 @@
 			files = (
 				845AF57D1BD929760029A607 /* UserTests.swift in Sources */,
 				845AF57B1BD9239B0029A607 /* NetworkManagerTests.swift in Sources */,
-				84D314841BCFD9C800912D28 /* RWAuthTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
