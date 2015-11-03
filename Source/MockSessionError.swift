@@ -17,9 +17,7 @@ enum MockSessionError: Int, ErrorType {
     case StubbedURLNotEqualRequestURL = 5
     case StubbedRequestBodyNotEqualRequestBody = 6
     
-    static var domain: String {
-        return "com.weezlabs.httpmock"
-    }
+    static var domain: String = "com.weezlabs.httpmock.session"
     
     var error: NSError {
         switch self {

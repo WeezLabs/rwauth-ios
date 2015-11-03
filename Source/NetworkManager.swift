@@ -35,7 +35,7 @@ class NetworkManager: NSObject {
     class func request(method: HTTPMethod, path: AuthPath, body: [String: AnyObject], completion: (response: Response<Any, NSError>) -> Void) {
         var response = Response<Any, NSError>()
         guard let url = NSURL(scheme: scheme, host: host, path: path.rawValue) else {
-            let result = Result<Any, NSError>.Failure(NetworkError.InvalidURL as NSError)
+            let result = Result<Any, NSError>.Failure(NetworkError.InvalidURL.error)
             response.result = result
             completion(response: response)
             return
@@ -55,18 +55,18 @@ class NetworkManager: NSObject {
             } else if innerData == nil || innerResponse == nil {
                 result = Result.Failure(NSError(domain: kCFErrorDomainCFNetwork as String, code: 400, userInfo: nil))
             } else {
-                if let successDict = try? NSJSONSerialization.JSONObjectWithData(innerData!, options: NSJSONReadingOptions(rawValue: 0)){
+                if let successDict = try? NSJSONSerialization.JSONObjectWithData(innerData!, options: NSJSONReadingOptions(rawValue: 0)) {
                     let httpResponse = innerResponse as! NSHTTPURLResponse
                     if httpResponse.statusCode >= 400 && httpResponse.statusCode < 500 {
-                        result = Result.Failure(NSError(domain: kCFErrorDomainCFNetwork as String, code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: "Client Error"]))
+                        result = Result.Failure(NetworkError.ClientError(httpResponse.statusCode).error)
                         
-                    } else if httpResponse.statusCode >= 500 && httpResponse.statusCode < 600{
-                        result = Result.Failure(NSError(domain: kCFErrorDomainCFNetwork as String, code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: "Server Error"]))
+                    } else if httpResponse.statusCode >= 500 && httpResponse.statusCode < 600 {
+                        result = Result.Failure(NetworkError.ServerError(httpResponse.statusCode).error)
                     } else {
                         result = Result.Success(successDict)
                     }
                 } else {
-                    result = Result.Failure(NSError(domain: "com.weezlabs.rwauth", code: 1, userInfo: [NSLocalizedDescriptionKey: "Serialization error"]))
+                    result = Result.Failure(NetworkError.SerializationError.error)
                 }
             }
             response = Response(request: request, response: innerResponse, data: innerData, result: result)
