@@ -41,7 +41,27 @@ public class User: NSObject {
     }
     
     public class func signUpWithUsername(username:String, password: String, email: String, isAsync: Bool = true, completion: (result: Result<Any, NSError>) -> Void) {
-        
+        let requestBody = ["user_name": username, "password": password, "email": email]
+        NetworkManager.request(.POST, path: .signUpPath, body: requestBody) { response in
+            if (response.result?.isSuccess == true) {
+                let user = User()
+                user.email = email
+                guard let responseDict = response.result?.value else { return }
+                let newDict = responseDict as! NSDictionary
+                user.id = newDict["id"] as? Int
+                user.username = newDict["user_name"] as? String
+                user.email = newDict["email"] as? String
+                
+                let result = Result<Any, NSError>.Success(user)
+                completion(result: result)
+                
+            } else if response.response?.statusCode == 400 {
+                let result = Result<Any, NSError>.Failure(AuthorizationError.ValidationError(400).error)
+                completion(result: result)
+            } else {
+                completion(result: response.result!)
+            }
+        }
     }
     
     public class func signOut(isAsync: Bool = true, completion: (error: NSError?) -> Void){

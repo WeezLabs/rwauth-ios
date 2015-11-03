@@ -84,6 +84,73 @@ class UserTests: XCTestCase {
         XCTAssertEqual(error.localizedDescription, "Validation Error", "error should be equal 'Validation Error'")
     }
     
+    // MARK: - Sign Up Tests
+    
+    func testSignUpWithValidData() {
+        // Given
+        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.signUpPath.rawValue
+        let username = "wizard"
+        let email = "test@example.com"
+        let password = "test123"
+        let requestBody: [String: AnyObject] = ["user_name": username, "password": password, "email": email]
+        let answerBody: [String: AnyObject] = ["id": "1", "user_name": username, "email": email]
+        let statusCode = 200
+        var result: Result<Any, NSError>?
+        
+        let mock = MockSession()
+        NetworkManager.session = mock
+        mock.stubRequest("POST", url: stubbedURL, requestBody: requestBody, returnCode: statusCode, answerBody: answerBody)
+        let expectation = expectationWithDescription("request should be successful")
+        
+        // When
+        User.signUpWithUsername(username, password: password, email: email) { (innerResult) -> Void in
+            result = innerResult
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(5, handler: nil)
+        
+        // Then
+        guard let value = result?.value else {
+            XCTFail("\(result?.error)")
+            return
+        }
+        let user = value as! User
+        XCTAssertEqual(user.email, email, "emails sould be equal")
+        XCTAssertEqual(user.username, answerBody["user_name"] as? String, "usernames should be equal")
+        XCTAssertEqual(user.id, answerBody["id"] as? Int, "ids should be equal")
+    }
+    
+    func testSignUpWithInvalidData() {
+        // Given
+        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.signUpPath.rawValue
+        let username = "wizard"
+        let email = "test@example.com"
+        let password = "test123"
+        let requestBody: [String: AnyObject] = ["user_name": username, "password": password, "email": email]
+        let answerBody: [String: AnyObject] = ["AnyKey": "AnyValue"]
+        let statusCode = 400
+        var result: Result<Any, NSError>?
+        
+        let mock = MockSession()
+        NetworkManager.session = mock
+        mock.stubRequest("POST", url: stubbedURL, requestBody: requestBody, returnCode: statusCode, answerBody: answerBody)
+        let expectation = expectationWithDescription("request should be successful")
+        
+        // When
+        User.signUpWithUsername(username, password: password, email: email) { (innerResult) -> Void in
+            result = innerResult
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(5, handler: nil)
+        
+        // Then
+        guard let error = result?.error else {
+            XCTFail("should be error")
+            return
+        }
+        XCTAssertEqual(error.localizedDescription, "Validation Error", "error should be equal 'Validation Error'")
+    }
+    
     // MARK: - Check Email Tests
     
     func testCheckEmailWithValidNonexistingEmail() {
