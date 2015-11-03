@@ -78,7 +78,7 @@ public class User: NSObject {
                 let result = Result<Any, NSError>.Failure(AuthorizationError.ValidationError(400).error)
                 completion(result: result)
             } else if response.response?.statusCode == 404 {
-                let result = Result<Any, NSError>.Failure(AuthorizationError.CouldNotFindUserWithEmail(404).error)
+                let result = Result<Any, NSError>.Failure(AuthorizationError.UserWithEmailNotExist(404).error)
                 completion(result: result)
             } else {
                 completion(result: response.result!)
@@ -86,8 +86,22 @@ public class User: NSObject {
         }
     }
     
-    public class func setNewPassword(password: String, recoveryCode: String, isAsync: Bool = true, completion: (error: NSError?) -> Void) {
-        
+    public class func setNewPassword(password: String, passwordConfimation: String, recoveryCode: String, isAsync: Bool = true, completion: (result: Result<Any, NSError>) -> Void) {
+        let requestBody = ["password": password, "password_confirmation": passwordConfimation, "code": recoveryCode]
+        NetworkManager.request(.PUT, path: .passwordRecoveryPath, body: requestBody) { response in
+            if (response.result?.isSuccess == true) {
+                let result = Result<Any, NSError>.Success("New password setted")
+                completion(result: result)
+            } else if response.response?.statusCode == 400 {
+                let result = Result<Any, NSError>.Failure(AuthorizationError.ValidationError(400).error)
+                completion(result: result)
+            } else if response.response?.statusCode == 404 {
+                let result = Result<Any, NSError>.Failure(AuthorizationError.IncorrectRecoverCode(404).error)
+                completion(result: result)
+            } else {
+                completion(result: response.result!)
+            }
+        }
     }
     
     public class func refreshTokensWithToken(refreshToken: String, isAsynch: Bool = true, completion: (error: NSError?) -> Void){

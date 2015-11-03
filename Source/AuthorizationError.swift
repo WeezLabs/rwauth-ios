@@ -11,7 +11,8 @@ import Foundation
 public enum AuthorizationError: ErrorType {
     case ValidationError (Int)
     case UserAlreadyExist (Int)
-    case CouldNotFindUserWithEmail (Int)
+    case UserWithEmailNotExist (Int)
+    case IncorrectRecoverCode (Int)
     
     var error: NSError {
         switch self {
@@ -19,8 +20,10 @@ public enum AuthorizationError: ErrorType {
             return NSError(domain: kCFErrorDomainCFNetwork as String, code: code, userInfo: [NSLocalizedDescriptionKey: "Validation Error"])
         case .UserAlreadyExist(let code):
             return NSError(domain: kCFErrorDomainCFNetwork as String, code: code, userInfo: [NSLocalizedDescriptionKey: "User Already Exist"])
-        case .CouldNotFindUserWithEmail(let code):
+        case .UserWithEmailNotExist(let code):
             return NSError(domain: kCFErrorDomainCFNetwork as String, code: code, userInfo: [NSLocalizedDescriptionKey: "Could Not Find User With Email"])
+        case .IncorrectRecoverCode( let code):
+            return NSError(domain: kCFErrorDomainCFNetwork as String, code: code, userInfo: [NSLocalizedDescriptionKey: "Incorrect Recover Code"])
         }
     }
     
@@ -28,5 +31,4 @@ public enum AuthorizationError: ErrorType {
 //    case IncorrectUserName
 //    case IncorrectPassword
 //    case IncorrectToken
-//    case IncorrectRecoverCode
 }

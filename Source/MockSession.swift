@@ -42,6 +42,10 @@ class MockSession: NSURLSession {
                 error = MockSessionError.BodyDataNotConvertableToString.error
                 return invalidTask
             }
+            guard request.HTTPMethod == fakeRequest.requestMethod else {
+                error = MockSessionError.HTTPMethodsNotEqual.error
+                return invalidTask
+            }
             guard let url = request.URL else {
                 error = MockSessionError.RequestDoesNotHaveURL.error
                 return invalidTask

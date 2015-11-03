@@ -81,7 +81,7 @@ class UserTests: XCTestCase {
             XCTFail("should be error")
             return
         }
-        XCTAssertEqual(error.localizedDescription, "Validation Error", "error should be equal 'Validation Error'")
+        XCTAssertEqual(error, AuthorizationError.ValidationError(statusCode).error, "errors sould be equal")
     }
     
     // MARK: - Sign Up Tests
@@ -148,7 +148,7 @@ class UserTests: XCTestCase {
             XCTFail("should be error")
             return
         }
-        XCTAssertEqual(error.localizedDescription, "Validation Error", "error should be equal 'Validation Error'")
+        XCTAssertEqual(error, AuthorizationError.ValidationError(statusCode).error, "errors sould be equal")
     }
     
     // MARK: - Request Recovery Code Tests
@@ -209,7 +209,7 @@ class UserTests: XCTestCase {
             XCTFail("should be error")
             return
         }
-        XCTAssertEqual(error.localizedDescription, "Validation Error", "error should be equal 'Validation Error'")
+        XCTAssertEqual(error, AuthorizationError.ValidationError(statusCode).error, "errors sould be equal")
     }
     
     func testRequestRecoveryCodeForNonexistingEmail() {
@@ -238,7 +238,102 @@ class UserTests: XCTestCase {
             XCTFail("should be error")
             return
         }
-        XCTAssertEqual(error.localizedDescription, "Could Not Find User With Email", "error should be equal 'Could Not Find User With Email'")
+        XCTAssertEqual(error, AuthorizationError.UserWithEmailNotExist(statusCode).error, "errors should be equal")
+    }
+    
+    // MARK: - Set New Password Tests
+    
+    func testSetNewPasswordWithValidCode() {
+        // Given
+        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.passwordRecoveryPath.rawValue
+        let password = "password"
+        let passwordConfirmation = "password"
+        let recoveryCode = "ALKJSD"
+        let requestBody: [String: AnyObject] = ["password": password, "password_confirmation": passwordConfirmation, "code": recoveryCode]
+        let answerBody: [String: AnyObject] = ["AnyKey": "AnyValue"]
+        let statusCode = 200
+        var result: Result<Any, NSError>?
+        
+        let mock = MockSession()
+        NetworkManager.session = mock
+        mock.stubRequest("PUT", url: stubbedURL, requestBody: requestBody, returnCode: statusCode, answerBody: answerBody)
+        let expectation = expectationWithDescription("request should be successful")
+        
+        // When
+        User.setNewPassword(password, passwordConfimation: passwordConfirmation, recoveryCode: recoveryCode) { (innerResult) -> Void in
+            result = innerResult
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(5, handler: nil)
+        
+        // Then
+        guard let value = result?.value else {
+            XCTFail("\(result?.error)")
+            return
+        }
+        XCTAssertEqual(value as? String, "New password setted")
+    }
+    
+    func testSetNewPasswordWithIncorrectCode() {
+        // Given
+        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.passwordRecoveryPath.rawValue
+        let password = "password"
+        let passwordConfirmation = "password"
+        let recoveryCode = "ALKJSD"
+        let requestBody: [String: AnyObject] = ["password": password, "password_confirmation": passwordConfirmation, "code": recoveryCode]
+        let answerBody: [String: AnyObject] = ["AnyKey": "AnyValue"]
+        let statusCode = 404
+        var result: Result<Any, NSError>?
+        
+        let mock = MockSession()
+        NetworkManager.session = mock
+        mock.stubRequest("PUT", url: stubbedURL, requestBody: requestBody, returnCode: statusCode, answerBody: answerBody)
+        let expectation = expectationWithDescription("request should be successful")
+        
+        // When
+        User.setNewPassword(password, passwordConfimation: passwordConfirmation, recoveryCode: recoveryCode) { (innerResult) -> Void in
+            result = innerResult
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(5, handler: nil)
+        
+        // Then
+        guard let error = result?.error else {
+            XCTFail("should be error")
+            return
+        }
+        XCTAssertEqual(error, AuthorizationError.IncorrectRecoverCode(statusCode).error, "errors should be equal")
+    }
+    
+    func testSetNewPasswordWithInvalidData() {
+        // Given
+        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.passwordRecoveryPath.rawValue
+        let password = "password"
+        let passwordConfirmation = "password234"
+        let recoveryCode = "ALKJSD"
+        let requestBody: [String: AnyObject] = ["password": password, "password_confirmation": passwordConfirmation, "code": recoveryCode]
+        let answerBody: [String: AnyObject] = ["AnyKey": "AnyValue"]
+        let statusCode = 400
+        var result: Result<Any, NSError>?
+        
+        let mock = MockSession()
+        NetworkManager.session = mock
+        mock.stubRequest("PUT", url: stubbedURL, requestBody: requestBody, returnCode: statusCode, answerBody: answerBody)
+        let expectation = expectationWithDescription("request should be successful")
+        
+        // When
+        User.setNewPassword(password, passwordConfimation: passwordConfirmation, recoveryCode: recoveryCode) { (innerResult) -> Void in
+            result = innerResult
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(5, handler: nil)
+        
+        // Then
+        guard let error = result?.error else {
+            XCTFail("should be error")
+            return
+        }
+        XCTAssertEqual(error, AuthorizationError.ValidationError(statusCode).error, "errors should be equal")
     }
     
     // MARK: - Check Email Tests
@@ -298,7 +393,7 @@ class UserTests: XCTestCase {
             XCTFail("should be error")
             return
         }
-        XCTAssertEqual(error.localizedDescription, "User Already Exist", "error should be equal 'User Already Exist'")
+        XCTAssertEqual(error, AuthorizationError.UserAlreadyExist(statusCode).error, "errors sould be equal")
     }
     
     func testCheckEmailWithInvalidEmail() {
@@ -327,6 +422,6 @@ class UserTests: XCTestCase {
             XCTFail("should be error")
             return
         }
-        XCTAssertEqual(error.localizedDescription, "Validation Error", "error should be equal 'Validation Error'")
+        XCTAssertEqual(error, AuthorizationError.ValidationError(statusCode).error, "errors sould be equal")
     }
 }

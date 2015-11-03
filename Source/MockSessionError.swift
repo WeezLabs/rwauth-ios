@@ -16,6 +16,7 @@ enum MockSessionError: Int, ErrorType {
     case RequestDoesNotHaveURL = 4
     case StubbedURLNotEqualRequestURL = 5
     case StubbedRequestBodyNotEqualRequestBody = 6
+    case HTTPMethodsNotEqual = 7
     
     static var domain: String = "com.weezlabs.httpmock.session"
     
@@ -36,6 +37,8 @@ enum MockSessionError: Int, ErrorType {
             return NSError(domain: MockSessionError.domain, code: self.rawValue, userInfo: [NSLocalizedDescriptionKey: "Stubbed URL Not Equal Request URL"])
         case .StubbedRequestBodyNotEqualRequestBody:
             return NSError(domain: MockSessionError.domain, code: self.rawValue, userInfo: [NSLocalizedDescriptionKey: "Stubbed Request Body Not Equal Request Body"])
+        case .HTTPMethodsNotEqual:
+            return NSError(domain: MockSessionError.domain, code: self.rawValue, userInfo: [NSLocalizedDescriptionKey: "HTTP Methods Not Equal"])
         }
     }
 }
