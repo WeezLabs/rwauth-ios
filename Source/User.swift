@@ -64,15 +64,29 @@ public class User: NSObject {
         }
     }
     
-    public class func signOut(isAsync: Bool = true, completion: (error: NSError?) -> Void){
+    public class func signOut(isAsync: Bool = true, completion: (error: NSError?) -> Void) {
         
     }
     
-    public class func requestRecoveryCodeForEmail(email: String, isAsync:Bool = true, completion:(error: NSError?) -> Void){
-        
+    public class func requestRecoveryCodeForEmail(email: String, isAsync:Bool = true, completion:(result: Result<Any, NSError>) -> Void) {
+        let requestBody = ["email": email]
+        NetworkManager.request(.POST, path: .passwordRecoveryPath, body: requestBody) { response in
+            if (response.result?.isSuccess == true) {
+                let result = Result<Any, NSError>.Success("Recovery code send on \(email)")
+                completion(result: result)
+            } else if response.response?.statusCode == 400 {
+                let result = Result<Any, NSError>.Failure(AuthorizationError.ValidationError(400).error)
+                completion(result: result)
+            } else if response.response?.statusCode == 404 {
+                let result = Result<Any, NSError>.Failure(AuthorizationError.CouldNotFindUserWithEmail(404).error)
+                completion(result: result)
+            } else {
+                completion(result: response.result!)
+            }
+        }
     }
     
-    public class func setNewPassword(password: String, recoveryCode: String, isAsync: Bool = true, completion: (error: NSError?) -> Void){
+    public class func setNewPassword(password: String, recoveryCode: String, isAsync: Bool = true, completion: (error: NSError?) -> Void) {
         
     }
     

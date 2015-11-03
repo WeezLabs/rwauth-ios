@@ -11,6 +11,7 @@ import Foundation
 public enum AuthorizationError: ErrorType {
     case ValidationError (Int)
     case UserAlreadyExist (Int)
+    case CouldNotFindUserWithEmail (Int)
     
     var error: NSError {
         switch self {
@@ -18,6 +19,8 @@ public enum AuthorizationError: ErrorType {
             return NSError(domain: kCFErrorDomainCFNetwork as String, code: code, userInfo: [NSLocalizedDescriptionKey: "Validation Error"])
         case .UserAlreadyExist(let code):
             return NSError(domain: kCFErrorDomainCFNetwork as String, code: code, userInfo: [NSLocalizedDescriptionKey: "User Already Exist"])
+        case .CouldNotFindUserWithEmail(let code):
+            return NSError(domain: kCFErrorDomainCFNetwork as String, code: code, userInfo: [NSLocalizedDescriptionKey: "Could Not Find User With Email"])
         }
     }
     

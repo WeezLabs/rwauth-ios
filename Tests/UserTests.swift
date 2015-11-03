@@ -151,6 +151,96 @@ class UserTests: XCTestCase {
         XCTAssertEqual(error.localizedDescription, "Validation Error", "error should be equal 'Validation Error'")
     }
     
+    // MARK: - Request Recovery Code Tests
+    
+    func testRequestRecoveryCodeForValidEmail() {
+        // Given
+        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.passwordRecoveryPath.rawValue
+        let email = "test@example.com"
+        let requestBody: [String: AnyObject] = ["email": email]
+        let answerBody: [String: AnyObject] = ["AnyKey": "AnyValue"]
+        let statusCode = 200
+        var result: Result<Any, NSError>?
+        
+        let mock = MockSession()
+        NetworkManager.session = mock
+        mock.stubRequest("POST", url: stubbedURL, requestBody: requestBody, returnCode: statusCode, answerBody: answerBody)
+        let expectation = expectationWithDescription("request should be successful")
+        
+        // When
+        User.requestRecoveryCodeForEmail(email) { (innerResult) -> Void in
+            result = innerResult
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(5, handler: nil)
+        
+        // Then
+        guard let value = result?.value else {
+            XCTFail("\(result?.error)")
+            return
+        }
+        let successString = value as! String
+        XCTAssertEqual(successString, "Recovery code send on \(email)")
+    }
+    
+    func testRequestRecoveryCodeInvalidEmail() {
+        // Given
+        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.passwordRecoveryPath.rawValue
+        let email = "test@example.com"
+        let requestBody: [String: AnyObject] = ["email": email]
+        let answerBody: [String: AnyObject] = ["AnyKey": "AnyValue"]
+        let statusCode = 400
+        var result: Result<Any, NSError>?
+        
+        let mock = MockSession()
+        NetworkManager.session = mock
+        mock.stubRequest("POST", url: stubbedURL, requestBody: requestBody, returnCode: statusCode, answerBody: answerBody)
+        let expectation = expectationWithDescription("request should be successful")
+        
+        // When
+        User.requestRecoveryCodeForEmail(email) { (innerResult) -> Void in
+            result = innerResult
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(5, handler: nil)
+        
+        // Then
+        guard let error = result?.error else {
+            XCTFail("should be error")
+            return
+        }
+        XCTAssertEqual(error.localizedDescription, "Validation Error", "error should be equal 'Validation Error'")
+    }
+    
+    func testRequestRecoveryCodeForNonexistingEmail() {
+        // Given
+        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.passwordRecoveryPath.rawValue
+        let email = "test@example.com"
+        let requestBody: [String: AnyObject] = ["email": email]
+        let answerBody: [String: AnyObject] = ["AnyKey": "AnyValue"]
+        let statusCode = 404
+        var result: Result<Any, NSError>?
+        
+        let mock = MockSession()
+        NetworkManager.session = mock
+        mock.stubRequest("POST", url: stubbedURL, requestBody: requestBody, returnCode: statusCode, answerBody: answerBody)
+        let expectation = expectationWithDescription("request should be successful")
+        
+        // When
+        User.requestRecoveryCodeForEmail(email) { (innerResult) -> Void in
+            result = innerResult
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(5, handler: nil)
+        
+        // Then
+        guard let error = result?.error else {
+            XCTFail("should be error")
+            return
+        }
+        XCTAssertEqual(error.localizedDescription, "Could Not Find User With Email", "error should be equal 'Could Not Find User With Email'")
+    }
+    
     // MARK: - Check Email Tests
     
     func testCheckEmailWithValidNonexistingEmail() {
