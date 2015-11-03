@@ -9,14 +9,13 @@
 import Foundation
 
 class MockTask: NSURLSessionUploadTask {
-    var mockResponse: (data: NSData?, urlResponse: NSURLResponse?, error: NSError?)
-    let completionHandler: ((NSData?, NSURLResponse?, NSError?) -> Void)
+    let completionHandler: (() -> Void)
     
-    init(completion: (data: NSData?, urlResponse: NSURLResponse?, error: NSError?) -> Void) {
+    init(completion: () -> Void) {
         self.completionHandler = completion
     }
     
     override func resume() {
-        completionHandler(nil, nil, nil)
+        completionHandler()
     }
 }

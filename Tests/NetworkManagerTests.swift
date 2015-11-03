@@ -49,7 +49,7 @@ class NetworkManagerTests: XCTestCase {
             XCTAssertTrue(response.result!.isSuccess, "result should be success")
             
             guard let value = response.result!.value else {
-                XCTFail("result value should not be nil")
+                XCTFail("\(response.result?.error)")
                 return
             }
             XCTAssertEqual(value as? NSDictionary, answerBody as NSDictionary, "Should be equal")

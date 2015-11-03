@@ -45,10 +45,11 @@ class UserTests: XCTestCase {
         
         // Then
         guard let value = result?.value else {
-            XCTFail("should be value")
+            XCTFail("\(result?.error)")
             return
         }
-        let  user = value as! User
+        let user = value as! User
+        XCTAssertEqual(user.email, email, "emails sould be equal")
         XCTAssertEqual(user.accessToken!, answerBody["access_token"] as? String, "accessTokens should be equal")
         XCTAssertEqual(user.refreshToken!, answerBody["refresh_token"] as? String, "refreshTokens should be equal")
     }
@@ -108,7 +109,7 @@ class UserTests: XCTestCase {
         
         // Then
         guard let value = result?.value else {
-            XCTFail("should be value")
+            XCTFail("\(result?.error)")
             return
         }
         XCTAssertEqual(value as? String, "Email doesn't exist", "result.value should be equal 'email doesn't exist'")
@@ -137,7 +138,7 @@ class UserTests: XCTestCase {
         
         // Then
         guard let error = result?.error else {
-            XCTFail("should be value")
+            XCTFail("should be error")
             return
         }
         XCTAssertEqual(error.localizedDescription, "User with such email exists", "error should be equal 'User with such email exists'")
@@ -166,7 +167,7 @@ class UserTests: XCTestCase {
         
         // Then
         guard let error = result?.error else {
-            XCTFail("should be value")
+            XCTFail("should be error")
             return
         }
         XCTAssertEqual(error.localizedDescription, "Validation error", "error should be equal 'Validation error'")

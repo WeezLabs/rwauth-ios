@@ -15,6 +15,7 @@
 		845AF5771BD909500029A607 /* AuthPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845AF5761BD909500029A607 /* AuthPath.swift */; };
 		845AF57B1BD9239B0029A607 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845AF57A1BD9239B0029A607 /* NetworkManagerTests.swift */; };
 		845AF57D1BD929760029A607 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845AF57C1BD929760029A607 /* UserTests.swift */; };
+		845F3E9B1BE8B4CC009E79CD /* MockSessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F3E9A1BE8B4CC009E79CD /* MockSessionError.swift */; };
 		846DA5381BDE65C4006EB7CA /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DA5371BDE65C4006EB7CA /* NetworkError.swift */; };
 		8497E57D1BE257A6008B9E35 /* FakeAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497E57A1BE257A6008B9E35 /* FakeAnswer.swift */; };
 		8497E57E1BE257A6008B9E35 /* FakeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497E57B1BE257A6008B9E35 /* FakeRequest.swift */; };
@@ -43,6 +44,7 @@
 		845AF5761BD909500029A607 /* AuthPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthPath.swift; sourceTree = "<group>"; };
 		845AF57A1BD9239B0029A607 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		845AF57C1BD929760029A607 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
+		845F3E9A1BE8B4CC009E79CD /* MockSessionError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSessionError.swift; sourceTree = "<group>"; };
 		846DA5371BDE65C4006EB7CA /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		8497E57A1BE257A6008B9E35 /* FakeAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeAnswer.swift; sourceTree = "<group>"; };
 		8497E57B1BE257A6008B9E35 /* FakeRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeRequest.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				8497E57A1BE257A6008B9E35 /* FakeAnswer.swift */,
 				8497E57B1BE257A6008B9E35 /* FakeRequest.swift */,
 				8497E57C1BE257A6008B9E35 /* MockSession.swift */,
+				845F3E9A1BE8B4CC009E79CD /* MockSessionError.swift */,
 				8497E5801BE26575008B9E35 /* MockTask.swift */,
 			);
 			name = HTTPMock;
@@ -267,6 +270,7 @@
 				8497E57D1BE257A6008B9E35 /* FakeAnswer.swift in Sources */,
 				845AF5771BD909500029A607 /* AuthPath.swift in Sources */,
 				845AF5751BD8F2680029A607 /* NetworkManager.swift in Sources */,
+				845F3E9B1BE8B4CC009E79CD /* MockSessionError.swift in Sources */,
 				8497E5811BE26575008B9E35 /* MockTask.swift in Sources */,
 				842CD35F1BCFEC3600EE79FF /* AuthorizationError.swift in Sources */,
 				8497E57F1BE257A6008B9E35 /* MockSession.swift in Sources */,
