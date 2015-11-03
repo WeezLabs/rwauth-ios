@@ -81,7 +81,7 @@ class UserTests: XCTestCase {
             XCTFail("should be error")
             return
         }
-        XCTAssertEqual(error.localizedDescription, "Validation error", "error should be equal 'Validation error'")
+        XCTAssertEqual(error.localizedDescription, "Validation Error", "error should be equal 'Validation Error'")
     }
     
     // MARK: - Check Email Tests
@@ -141,7 +141,7 @@ class UserTests: XCTestCase {
             XCTFail("should be error")
             return
         }
-        XCTAssertEqual(error.localizedDescription, "User with such email exists", "error should be equal 'User with such email exists'")
+        XCTAssertEqual(error.localizedDescription, "User Already Exist", "error should be equal 'User Already Exist'")
     }
     
     func testCheckEmailWithInvalidEmail() {
@@ -170,6 +170,6 @@ class UserTests: XCTestCase {
             XCTFail("should be error")
             return
         }
-        XCTAssertEqual(error.localizedDescription, "Validation error", "error should be equal 'Validation error'")
+        XCTAssertEqual(error.localizedDescription, "Validation Error", "error should be equal 'Validation Error'")
     }
 }

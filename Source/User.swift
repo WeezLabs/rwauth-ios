@@ -11,12 +11,13 @@ import Foundation
 public class User: NSObject {
     public var username: String?
     public var email: String?
+    public var id: Int?
     private(set) public var accessToken: String?
     private(set) public var refreshToken: String?
     private(set) public var accessTokenExpirationDate: NSDate?
     
     
-    public class func signInWithEmail(email: String, password: String, isAsync: Bool = true, completion: (result: Result<Any, NSError>) -> Void){
+    public class func signInWithEmail(email: String, password: String, isAsync: Bool = true, completion: (result: Result<Any, NSError>) -> Void) {
         let requestBody = ["email": email, "password": password]
         NetworkManager.request(.POST, path: .signInPath, body: requestBody) { response in
             if (response.result?.isSuccess == true) {
@@ -31,7 +32,7 @@ public class User: NSObject {
                 completion(result: result)
                 
             } else if response.response?.statusCode == 400 {
-                let result = Result<Any, NSError>.Failure(NSError(domain: kCFErrorDomainCFNetwork as String, code: 400, userInfo: [NSLocalizedDescriptionKey: "Validation error"]))
+                let result = Result<Any, NSError>.Failure(AuthorizationError.ValidationError(400).error)
                 completion(result: result)
             } else {
                 completion(result: response.result!)
@@ -39,7 +40,7 @@ public class User: NSObject {
         }
     }
     
-    public class func signUpWithUsername(username:String, password: String, email: String, isAsync: Bool = true, completion: (user: User, error: NSError?) -> Void){
+    public class func signUpWithUsername(username:String, password: String, email: String, isAsync: Bool = true, completion: (result: Result<Any, NSError>) -> Void) {
         
     }
     
@@ -59,16 +60,16 @@ public class User: NSObject {
         
     }
     
-    public class func checkEmail(email: String, isAsync : Bool = true, completion: (result: Result<Any, NSError>) -> Void){
+    public class func checkEmail(email: String, isAsync: Bool = true, completion: (result: Result<Any, NSError>) -> Void){
         NetworkManager.request(.POST, path: .checkEmail, body: ["email": email]) { response in
             if (response.result?.isSuccess == true) {
                 let result = Result<Any, NSError>.Success("Email doesn't exist")
                 completion(result: result)
             } else if response.response?.statusCode == 409 {
-                let result = Result<Any, NSError>.Failure(NSError(domain: kCFErrorDomainCFNetwork as String, code: 409, userInfo: [NSLocalizedDescriptionKey: "User with such email exists"]))
+                let result = Result<Any, NSError>.Failure(AuthorizationError.UserAlreadyExist(409).error)
                 completion(result: result)
             } else if response.response?.statusCode == 400 {
-                let result = Result<Any, NSError>.Failure(NSError(domain: kCFErrorDomainCFNetwork as String, code: 400, userInfo: [NSLocalizedDescriptionKey: "Validation error"]))
+                let result = Result<Any, NSError>.Failure(AuthorizationError.ValidationError(400).error)
                 completion(result: result)
             } else {
                 completion(result: response.result!)
