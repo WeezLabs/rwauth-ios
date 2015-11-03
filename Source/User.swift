@@ -104,8 +104,26 @@ public class User: NSObject {
         }
     }
     
-    public class func refreshTokensWithToken(refreshToken: String, isAsynch: Bool = true, completion: (error: NSError?) -> Void){
-        
+    public class func refreshTokensWithToken(refreshToken: String, isAsynch: Bool = true, completion: (result: Result<Any, NSError>) -> Void){
+        let requestBody = ["refresh_token": refreshToken]
+        NetworkManager.request(.PUT, path: .refreshTokenPath, body: requestBody) { response in
+            if (response.result?.isSuccess == true) {
+                let user = User()
+                guard let responseDict = response.result?.value else { return }
+                let newDict = responseDict as! NSDictionary
+                user.accessToken = newDict["access_token"] as? String
+                user.refreshToken = newDict["refresh_token"] as? String
+                
+                let result = Result<Any, NSError>.Success(user)
+                completion(result: result)
+                
+            } else if response.response?.statusCode == 400 {
+                let result = Result<Any, NSError>.Failure(AuthorizationError.ValidationError(400).error)
+                completion(result: result)
+            } else {
+                completion(result: response.result!)
+            }
+        }
     }
     
     public class func checkEmail(email: String, isAsync: Bool = true, completion: (result: Result<Any, NSError>) -> Void){

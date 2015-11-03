@@ -336,6 +336,68 @@ class UserTests: XCTestCase {
         XCTAssertEqual(error, AuthorizationError.ValidationError(statusCode).error, "errors should be equal")
     }
     
+    // MARK: - Refresh Tokens Tests
+    
+    func testRefreshtokenWithValidData() {
+        // Given
+        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.refreshTokenPath.rawValue
+        let refreshToken = "eG3xUsZ/GM3YmyQDVxVRfJekmial"
+        let requestBody: [String: AnyObject] = ["refresh_token": refreshToken]
+        let answerBody: [String: AnyObject] = ["access_token": "LHelF8mJxsub/+lSKhOjTaH", "refresh_token": "eG3xUsZ/GM3YmyQDVxVRfJekmial"]
+        let statusCode = 200
+        var result: Result<Any, NSError>?
+        
+        let mock = MockSession()
+        NetworkManager.session = mock
+        mock.stubRequest("PUT", url: stubbedURL, requestBody: requestBody, returnCode: statusCode, answerBody: answerBody)
+        let expectation = expectationWithDescription("request should be successful")
+        
+        // When
+        User.refreshTokensWithToken(refreshToken) { (innerResult) -> Void in
+            result = innerResult
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(5, handler: nil)
+        
+        // Then
+        guard let value = result?.value else {
+            XCTFail("\(result?.error)")
+            return
+        }
+        let user = value as! User
+        XCTAssertEqual(user.accessToken!, answerBody["access_token"] as? String, "accessTokens should be equal")
+        XCTAssertEqual(user.refreshToken!, answerBody["refresh_token"] as? String, "refreshTokens should be equal")
+    }
+    
+    func testRefreshTokenWithInvalidData() {
+        // Given
+        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.refreshTokenPath.rawValue
+        let refreshToken = "eG3xUsZ/GM3YmyQDVxVRfJekmial"
+        let requestBody: [String: AnyObject] = ["refresh_token": refreshToken]
+        let answerBody: [String: AnyObject] = ["access_token": "LHelF8mJxsub/+lSKhOjTaH", "refresh_token": "eG3xUsZ/GM3YmyQDVxVRfJekmial"]
+        let statusCode = 400
+        var result: Result<Any, NSError>?
+        
+        let mock = MockSession()
+        NetworkManager.session = mock
+        mock.stubRequest("PUT", url: stubbedURL, requestBody: requestBody, returnCode: statusCode, answerBody: answerBody)
+        let expectation = expectationWithDescription("request should be successful")
+        
+        // When
+        User.refreshTokensWithToken(refreshToken) { (innerResult) -> Void in
+            result = innerResult
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(5, handler: nil)
+        
+        // Then
+        guard let error = result?.error else {
+            XCTFail("should be error")
+            return
+        }
+        XCTAssertEqual(error, AuthorizationError.ValidationError(statusCode).error, "errors sould be equal")
+    }
+    
     // MARK: - Check Email Tests
     
     func testCheckEmailWithValidNonexistingEmail() {
