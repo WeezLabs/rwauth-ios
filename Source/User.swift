@@ -64,8 +64,11 @@ public class User: NSObject {
         }
     }
     
-    public class func signOut(isAsync: Bool = true, completion: (error: NSError?) -> Void) {
-        
+    public func signOut(completion: () -> Void) {
+        self.accessToken = nil
+        self.refreshToken = nil
+        self.accessTokenExpirationDate = nil;
+        completion()
     }
     
     public class func requestRecoveryCodeForEmail(email: String, isAsync:Bool = true, completion:(result: Result<Any, NSError>) -> Void) {
