@@ -53,7 +53,7 @@ class NetworkManager: NSObject {
             if let error = error {
                 result = Result.Failure(error)
             } else if innerData == nil || innerResponse == nil {
-                result = Result.Failure(NSError(domain: kCFErrorDomainCFNetwork as String, code: 400, userInfo: nil))
+                result = Result.Failure(NetworkError.EmptyResponseOrData.error)
             } else {
                 if let successDict = try? NSJSONSerialization.JSONObjectWithData(innerData!, options: NSJSONReadingOptions(rawValue: 0)) {
                     let httpResponse = innerResponse as! NSHTTPURLResponse

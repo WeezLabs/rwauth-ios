@@ -11,6 +11,7 @@ import Foundation
 enum NetworkError: ErrorType {
     case InvalidURL
     case SerializationError
+    case EmptyResponseOrData
     case ClientError (Int)
     case ServerError (Int)
     
@@ -27,6 +28,8 @@ enum NetworkError: ErrorType {
                 return NSError(domain: kCFErrorDomainCFNetwork as String, code: code, userInfo: [NSLocalizedDescriptionKey: "Client Error"])
         case .ServerError(let code):
             return NSError(domain: kCFErrorDomainCFNetwork as String, code: code, userInfo: [NSLocalizedDescriptionKey: "Server Error"])
+        case .EmptyResponseOrData:
+            return NSError(domain: NetworkError.domain as String, code: 2, userInfo: [NSLocalizedDescriptionKey: "Empty Response or Data"])
         }
     }
 }
