@@ -10,9 +10,6 @@ import Foundation
 
 class NetworkManager: NSObject {
     
-    static let scheme = "http"
-    static let host = "exampledomain.com"
-    
     private static var storedSession: NSURLSession?
     static var session: NSURLSession? {
         get {
@@ -34,7 +31,7 @@ class NetworkManager: NSObject {
     
     class func request(method: HTTPMethod, path: AuthPath, body: [String: AnyObject], completion: (response: Response<Any, NSError>) -> Void) {
         var response = Response<Any, NSError>()
-        guard let url = NSURL(scheme: scheme, host: host, path: path.rawValue) else {
+        guard let url = NSURL(scheme: AuthPath.scheme, host: AuthPath.host, path: path.rawValue) else {
             let result = Result<Any, NSError>.Failure(NetworkError.InvalidURL.error)
             response.result = result
             completion(response: response)

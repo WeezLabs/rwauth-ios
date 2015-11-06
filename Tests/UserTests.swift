@@ -23,7 +23,7 @@ class UserTests: XCTestCase {
     
     func testSignInWithValidData() {
         // Given
-        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.signInPath.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.signInPath.rawValue
         let email = "test@example.com"
         let password = "test123"
         let requestBody: [String: AnyObject] = ["email": email, "password": password]
@@ -56,7 +56,7 @@ class UserTests: XCTestCase {
     
     func testSignInWithInvalidData() {
         // Given
-        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.signInPath.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.signInPath.rawValue
         let email = "test@example.com"
         let password = "test123"
         let requestBody: [String: AnyObject] = ["email": email, "password": password]
@@ -88,7 +88,7 @@ class UserTests: XCTestCase {
     
     func testSignUpWithValidData() {
         // Given
-        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.signUpPath.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.signUpPath.rawValue
         let username = "wizard"
         let email = "test@example.com"
         let password = "test123"
@@ -122,7 +122,7 @@ class UserTests: XCTestCase {
     
     func testSignUpWithInvalidData() {
         // Given
-        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.signUpPath.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.signUpPath.rawValue
         let username = "wizard"
         let email = "test@example.com"
         let password = "test123"
@@ -155,7 +155,7 @@ class UserTests: XCTestCase {
     
     func testRequestRecoveryCodeForValidEmail() {
         // Given
-        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.passwordRecoveryPath.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.passwordRecoveryPath.rawValue
         let email = "test@example.com"
         let requestBody: [String: AnyObject] = ["email": email]
         let answerBody: [String: AnyObject] = ["AnyKey": "AnyValue"]
@@ -185,7 +185,7 @@ class UserTests: XCTestCase {
     
     func testRequestRecoveryCodeInvalidEmail() {
         // Given
-        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.passwordRecoveryPath.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.passwordRecoveryPath.rawValue
         let email = "test@example.com"
         let requestBody: [String: AnyObject] = ["email": email]
         let answerBody: [String: AnyObject] = ["AnyKey": "AnyValue"]
@@ -214,7 +214,7 @@ class UserTests: XCTestCase {
     
     func testRequestRecoveryCodeForNonexistingEmail() {
         // Given
-        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.passwordRecoveryPath.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.passwordRecoveryPath.rawValue
         let email = "test@example.com"
         let requestBody: [String: AnyObject] = ["email": email]
         let answerBody: [String: AnyObject] = ["AnyKey": "AnyValue"]
@@ -245,7 +245,7 @@ class UserTests: XCTestCase {
     
     func testSetNewPasswordWithValidCode() {
         // Given
-        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.passwordRecoveryPath.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.passwordRecoveryPath.rawValue
         let password = "password"
         let passwordConfirmation = "password"
         let recoveryCode = "ALKJSD"
@@ -276,7 +276,7 @@ class UserTests: XCTestCase {
     
     func testSetNewPasswordWithIncorrectCode() {
         // Given
-        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.passwordRecoveryPath.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.passwordRecoveryPath.rawValue
         let password = "password"
         let passwordConfirmation = "password"
         let recoveryCode = "ALKJSD"
@@ -307,7 +307,7 @@ class UserTests: XCTestCase {
     
     func testSetNewPasswordWithInvalidData() {
         // Given
-        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.passwordRecoveryPath.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.passwordRecoveryPath.rawValue
         let password = "password"
         let passwordConfirmation = "password234"
         let recoveryCode = "ALKJSD"
@@ -340,7 +340,7 @@ class UserTests: XCTestCase {
     
     func testRefreshtokenWithValidData() {
         // Given
-        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.refreshTokenPath.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.refreshTokenPath.rawValue
         let refreshToken = "eG3xUsZ/GM3YmyQDVxVRfJekmial"
         let requestBody: [String: AnyObject] = ["refresh_token": refreshToken]
         let answerBody: [String: AnyObject] = ["access_token": "LHelF8mJxsub/+lSKhOjTaH", "refresh_token": "eG3xUsZ/GM3YmyQDVxVRfJekmial"]
@@ -371,7 +371,7 @@ class UserTests: XCTestCase {
     
     func testRefreshTokenWithInvalidData() {
         // Given
-        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.refreshTokenPath.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.refreshTokenPath.rawValue
         let refreshToken = "eG3xUsZ/GM3YmyQDVxVRfJekmial"
         let requestBody: [String: AnyObject] = ["refresh_token": refreshToken]
         let answerBody: [String: AnyObject] = ["access_token": "LHelF8mJxsub/+lSKhOjTaH", "refresh_token": "eG3xUsZ/GM3YmyQDVxVRfJekmial"]
@@ -402,7 +402,7 @@ class UserTests: XCTestCase {
     
     func testCheckEmailWithValidNonexistingEmail() {
         // Given
-        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.checkEmail.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.checkEmail.rawValue
         let email = "test@example.com"
         let requestBody: [String: AnyObject] = ["email": email]
         let answerBody: [String: AnyObject] = ["AnyKey": "AnyValue"]
@@ -431,7 +431,7 @@ class UserTests: XCTestCase {
     
     func testCheckEmailWithValidExistingEmail() {
         // Given
-        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.checkEmail.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.checkEmail.rawValue
         let email = "test@example.com"
         let requestBody: [String: AnyObject] = ["email": email]
         let answerBody: [String: AnyObject] = ["AnyKey": "AnyValue"]
@@ -460,7 +460,7 @@ class UserTests: XCTestCase {
     
     func testCheckEmailWithInvalidEmail() {
         // Given
-        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.checkEmail.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.checkEmail.rawValue
         let email = "example.com"
         let requestBody: [String: AnyObject] = ["email": email]
         let answerBody: [String: AnyObject] = ["AnyKey": "AnyValue"]
