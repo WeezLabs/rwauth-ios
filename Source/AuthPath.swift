@@ -15,4 +15,7 @@ enum AuthPath: String {
     case passwordRecoveryPath = "/users/password_recovery"
     case refreshTokenPath = "/users/accesstoken/refresh"
     case checkEmail = "/users/check_email"
+    
+    static let scheme = "http"
+    static let host = "exampledomain.com"
 }

@@ -21,7 +21,7 @@ class NetworkManagerTests: XCTestCase {
     
     func testSuccessfulPOST() {
         // Given
-        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.signInPath.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.signInPath.rawValue
         let requestBody: [String: AnyObject] = ["user": "name"]
         let answerBody: [String: AnyObject] = ["status": "OK"]
         let statusCode = 200
@@ -60,7 +60,7 @@ class NetworkManagerTests: XCTestCase {
     
     func testFailedPOST() {
         // Given
-        let stubbedURL = NetworkManager.scheme + "://" + NetworkManager.host + AuthPath.signInPath.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.signInPath.rawValue
         print("\(stubbedURL)")
         let requestBody: [String: AnyObject] = ["user": "name"]
         let answerBody: [String: AnyObject] = ["AnyKey": "AnyValue"]
