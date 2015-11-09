@@ -1,0 +1,14 @@
+PODS:
+  - RWAuth (0.1.0)
+
+DEPENDENCIES:
+  - RWAuth (from `../`)
+
+EXTERNAL SOURCES:
+  RWAuth:
+    :path: ../
+
+SPEC CHECKSUMS:
+  RWAuth: 0a014c2d47e947f80f239425b8aeb4518b8997a7
+
+COCOAPODS: 0.38.2
