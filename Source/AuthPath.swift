@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum AuthPath: String{
+enum AuthPath: String {
     case signUpPath = "/users/signup"
     case signInPath = "/users/signin"
     case signOutPath = "/users/signout"
