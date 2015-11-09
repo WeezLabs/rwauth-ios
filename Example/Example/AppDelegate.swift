@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  iOS Example
+//  Example
 //
-//  Created by Роман on 15.10.15.
-//  Copyright © 2015 weezlabs. All rights reserved.
+//  Created by Роман on 09.11.15.
+//  Copyright © 2015 Weezlabs. All rights reserved.
 //
 
 import UIKit

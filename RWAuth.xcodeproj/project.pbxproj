@@ -88,22 +88,9 @@
 		842CD38E1BCFF9C400EE79FF /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				8497E5821BE2657B008B9E35 /* HTTPMock */,
 				8497E5831BE265A6008B9E35 /* Auth */,
 			);
 			name = Core;
-			sourceTree = "<group>";
-		};
-		8497E5821BE2657B008B9E35 /* HTTPMock */ = {
-			isa = PBXGroup;
-			children = (
-				8497E57A1BE257A6008B9E35 /* FakeAnswer.swift */,
-				8497E57B1BE257A6008B9E35 /* FakeRequest.swift */,
-				8497E57C1BE257A6008B9E35 /* MockSession.swift */,
-				845F3E9A1BE8B4CC009E79CD /* MockSessionError.swift */,
-				8497E5801BE26575008B9E35 /* MockTask.swift */,
-			);
-			name = HTTPMock;
 			sourceTree = "<group>";
 		};
 		8497E5831BE265A6008B9E35 /* Auth */ = {
@@ -118,6 +105,18 @@
 				8455BE7C1BDA623A003EA0FB /* Result.swift */,
 			);
 			name = Auth;
+			sourceTree = "<group>";
+		};
+		84BB9D871BF0FA5300C06D66 /* HTTPMock */ = {
+			isa = PBXGroup;
+			children = (
+				8497E57A1BE257A6008B9E35 /* FakeAnswer.swift */,
+				8497E57B1BE257A6008B9E35 /* FakeRequest.swift */,
+				8497E57C1BE257A6008B9E35 /* MockSession.swift */,
+				845F3E9A1BE8B4CC009E79CD /* MockSessionError.swift */,
+				8497E5801BE26575008B9E35 /* MockTask.swift */,
+			);
+			name = HTTPMock;
 			sourceTree = "<group>";
 		};
 		84D3146A1BCFD9C800912D28 = {
@@ -150,6 +149,7 @@
 		84D314821BCFD9C800912D28 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				84BB9D871BF0FA5300C06D66 /* HTTPMock */,
 				845AF57A1BD9239B0029A607 /* NetworkManagerTests.swift */,
 				845AF57C1BD929760029A607 /* UserTests.swift */,
 				84D314851BCFD9C800912D28 /* Info.plist */,
