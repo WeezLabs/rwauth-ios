@@ -29,7 +29,13 @@ class NetworkManager: NSObject {
         case PUT = "PUT"
     }
     
-    class func request(method: HTTPMethod, path: AuthPath, body: [String: AnyObject], completion: (response: Response<Any, NSError>) -> Void) {
+    class func request(method: HTTPMethod, path: AuthPath, body: [String: AnyObject], isAsync: Bool = true, completion: (response: Response<Any, NSError>) -> Void) {
+        
+        var semaphore: dispatch_semaphore_t?
+        if !isAsync {
+            semaphore = dispatch_semaphore_create(0)
+        }
+        
         var response = Response<Any, NSError>()
         guard let url = NSURL(scheme: AuthPath.scheme, host: AuthPath.host, path: path.rawValue) else {
             let result = Result<Any, NSError>.Failure(NetworkError.InvalidURL.error)
@@ -68,8 +74,16 @@ class NetworkManager: NSObject {
             }
             response = Response(request: request, response: innerResponse, data: innerData, result: result)
             completion(response: response)
+            
+            if semaphore != nil {
+                dispatch_semaphore_signal(semaphore!)
+            }
         }
         uploadTask.resume()
+        
+        if semaphore != nil {
+            dispatch_semaphore_wait(semaphore!, DISPATCH_TIME_FOREVER)
+        }
     }
 }
 
