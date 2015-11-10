@@ -22,7 +22,7 @@ class NetworkManagerTests: XCTestCase {
     
     func testSuccessfulPOST() {
         // Given
-        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.signInPath.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.signInPath
         let requestBody: [String: AnyObject] = ["user": "name"]
         let answerBody: [String: AnyObject] = ["status": "OK"]
         let statusCode = 200
@@ -34,7 +34,7 @@ class NetworkManagerTests: XCTestCase {
         let expectation = expectationWithDescription("request should be successful")
         
         // When
-        NetworkManager.request(.POST, authPath: .signInPath, body: ["user": "name"]) { closureResponse in
+        NetworkManager.request(.POST, authPath: AuthPath.signInPath, body: ["user": "name"]) { closureResponse in
             response = closureResponse
             expectation.fulfill()
         }
@@ -61,7 +61,7 @@ class NetworkManagerTests: XCTestCase {
     
     func testFailedPOST() {
         // Given
-        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.signInPath.rawValue
+        let stubbedURL = AuthPath.scheme + "://" + AuthPath.host + AuthPath.signInPath
         print("\(stubbedURL)")
         let requestBody: [String: AnyObject] = ["user": "name"]
         let answerBody: [String: AnyObject] = ["AnyKey": "AnyValue"]
@@ -74,7 +74,7 @@ class NetworkManagerTests: XCTestCase {
         let expectation = expectationWithDescription("request should be successful")
         
         // When
-        NetworkManager.request(.POST, authPath: .signInPath, body: ["user": "name"]) { closureResponse in
+        NetworkManager.request(.POST, authPath: AuthPath.signInPath, body: ["user": "name"]) { closureResponse in
             response = closureResponse
             expectation.fulfill()
         }

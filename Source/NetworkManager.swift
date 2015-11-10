@@ -29,7 +29,7 @@ class NetworkManager: NSObject {
         case PUT = "PUT"
     }
     
-    class func request(method: HTTPMethod, authPath: AuthPath, body: [String: AnyObject], isAsync: Bool = true, completion: (response: Response<Any, NSError>) -> Void) {
+    class func request(method: HTTPMethod, authPath: String, body: [String: AnyObject], isAsync: Bool = true, completion: (response: Response<Any, NSError>) -> Void) {
         
         var semaphore: dispatch_semaphore_t?
         if !isAsync {
@@ -37,7 +37,7 @@ class NetworkManager: NSObject {
         }
         
         var response = Response<Any, NSError>()
-        guard let url = NSURL(scheme: AuthPath.scheme, host: AuthPath.host, path: authPath.rawValue) else {
+        guard let url = NSURL(scheme: AuthPath.scheme, host: AuthPath.host, path: authPath) else {
             let result = Result<Any, NSError>.Failure(NetworkError.InvalidURL.error)
             response.result = result
             completion(response: response)

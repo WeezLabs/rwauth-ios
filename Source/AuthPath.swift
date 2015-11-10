@@ -8,15 +8,14 @@
 
 import Foundation
 
-enum AuthPath: String {
-    case signUpPath = "/users/signup"
-    case signInPath = "/users/signin"
-    case signOutPath = "/users/signout"
-    case passwordRecoveryPath = "/users/password_recovery"
-    case refreshTokenPath = "/users/accesstoken/refresh"
-    case checkEmail = "/users/check_email"
+struct AuthPath {
+    static var signUpPath = "/users/signup"
+    static var signInPath = "/users/signin"
+    static var signOutPath = "/users/signout"
+    static var passwordRecoveryPath = "/users/password_recovery"
+    static var refreshTokenPath = "/users/accesstoken/refresh"
+    static var checkEmail = "/users/check_email"
     
-    static let scheme = "http"
-    static let host = "exampledomain.com"
-
+    static var scheme = "http"
+    static var host = "exampledomain.com"
 }
