@@ -9,11 +9,11 @@
 import Foundation
 
 struct AuthPath {
-    static var signUpPath = "/users/signup"
-    static var signInPath = "/users/signin"
-    static var signOutPath = "/users/signout"
-    static var passwordRecoveryPath = "/users/password_recovery"
-    static var refreshTokenPath = "/users/accesstoken/refresh"
+    static var signUp = "/users/signup"
+    static var signIn = "/users/signin"
+    static var signOut = "/users/signout"
+    static var passwordRecovery = "/users/password_recovery"
+    static var refreshToken = "/users/accesstoken/refresh"
     static var checkEmail = "/users/check_email"
     
     static var scheme = "http"

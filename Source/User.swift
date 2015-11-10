@@ -9,6 +9,7 @@
 import Foundation
 
 public class User: NSObject {
+    
     public var username: String?
     public var email: String?
     public var id: Int?
@@ -16,10 +17,9 @@ public class User: NSObject {
     private(set) public var refreshToken: String?
     private(set) public var accessTokenExpirationDate: NSDate?
     
-    
     public class func signInWithEmail(email: String, password: String, isAsync: Bool = true, completion: (result: Result<Any, NSError>) -> Void) {
         let requestBody = ["email": email, "password": password]
-        NetworkManager.request(.POST, authPath: AuthPath.signInPath, body: requestBody, isAsync: isAsync) { response in
+        NetworkManager.request(.POST, authPath: AuthPath.signIn, body: requestBody, isAsync: isAsync) { response in
             if (response.result?.isSuccess == true) {
                 let user = User()
                 user.email = email
@@ -42,7 +42,7 @@ public class User: NSObject {
     
     public class func signUpWithUsername(username:String, password: String, email: String, isAsync: Bool = true, completion: (result: Result<Any, NSError>) -> Void) {
         let requestBody = ["user_name": username, "password": password, "email": email]
-        NetworkManager.request(.POST, authPath: AuthPath.signUpPath, body: requestBody, isAsync: isAsync) { response in
+        NetworkManager.request(.POST, authPath: AuthPath.signUp, body: requestBody, isAsync: isAsync) { response in
             if (response.result?.isSuccess == true) {
                 let user = User()
                 user.email = email
@@ -73,7 +73,7 @@ public class User: NSObject {
     
     public class func requestRecoveryCodeForEmail(email: String, isAsync:Bool = true, completion:(result: Result<Any, NSError>) -> Void) {
         let requestBody = ["email": email]
-        NetworkManager.request(.POST, authPath: AuthPath.passwordRecoveryPath, body: requestBody, isAsync: isAsync) { response in
+        NetworkManager.request(.POST, authPath: AuthPath.passwordRecovery, body: requestBody, isAsync: isAsync) { response in
             if (response.result?.isSuccess == true) {
                 let result = Result<Any, NSError>.Success("Recovery code send on \(email)")
                 completion(result: result)
@@ -91,7 +91,7 @@ public class User: NSObject {
     
     public class func setNewPassword(password: String, passwordConfimation: String, recoveryCode: String, isAsync: Bool = true, completion: (result: Result<Any, NSError>) -> Void) {
         let requestBody = ["password": password, "password_confirmation": passwordConfimation, "code": recoveryCode]
-        NetworkManager.request(.PUT, authPath: AuthPath.passwordRecoveryPath, body: requestBody, isAsync: isAsync) { response in
+        NetworkManager.request(.PUT, authPath: AuthPath.passwordRecovery, body: requestBody, isAsync: isAsync) { response in
             if (response.result?.isSuccess == true) {
                 let result = Result<Any, NSError>.Success("New password setted")
                 completion(result: result)
@@ -109,7 +109,7 @@ public class User: NSObject {
     
     public class func refreshTokensWithToken(refreshToken: String, isAsynch: Bool = true, completion: (result: Result<Any, NSError>) -> Void){
         let requestBody = ["refresh_token": refreshToken]
-        NetworkManager.request(.PUT, authPath: AuthPath.refreshTokenPath, body: requestBody, isAsync: isAsynch) { response in
+        NetworkManager.request(.PUT, authPath: AuthPath.refreshToken, body: requestBody, isAsync: isAsynch) { response in
             if (response.result?.isSuccess == true) {
                 let user = User()
                 guard let responseDict = response.result?.value else { return }
