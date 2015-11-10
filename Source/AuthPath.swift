@@ -18,4 +18,5 @@ enum AuthPath: String {
     
     static let scheme = "http"
     static let host = "exampledomain.com"
+
 }

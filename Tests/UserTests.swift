@@ -17,6 +17,7 @@ class UserTests: XCTestCase {
     
     override func tearDown() {
         super.tearDown()
+        NetworkManager.session = nil
     }
     
     // MARK: - Sign In Tests
@@ -486,4 +487,5 @@ class UserTests: XCTestCase {
         }
         XCTAssertEqual(error, AuthorizationError.ValidationError(statusCode).error, "errors sould be equal")
     }
+    
 }

@@ -17,7 +17,6 @@ enum NetworkError: ErrorType {
     
     static var domain = "com.weezlabs.rwauth.network"
     
-    
     var error: NSError {
         switch self {
         case .InvalidURL:

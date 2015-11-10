@@ -17,6 +17,7 @@ class NetworkManagerTests: XCTestCase {
     
     override func tearDown() {
         super.tearDown()
+        NetworkManager.session = nil
     }
     
     func testSuccessfulPOST() {
@@ -33,7 +34,7 @@ class NetworkManagerTests: XCTestCase {
         let expectation = expectationWithDescription("request should be successful")
         
         // When
-        NetworkManager.request(.POST, path: .signInPath, body: ["user": "name"]) { closureResponse in
+        NetworkManager.request(.POST, authPath: .signInPath, body: ["user": "name"]) { closureResponse in
             response = closureResponse
             expectation.fulfill()
         }
@@ -73,7 +74,7 @@ class NetworkManagerTests: XCTestCase {
         let expectation = expectationWithDescription("request should be successful")
         
         // When
-        NetworkManager.request(.POST, path: .signInPath, body: ["user": "name"]) { closureResponse in
+        NetworkManager.request(.POST, authPath: .signInPath, body: ["user": "name"]) { closureResponse in
             response = closureResponse
             expectation.fulfill()
         }

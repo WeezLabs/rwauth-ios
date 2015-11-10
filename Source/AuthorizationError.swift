@@ -26,9 +26,4 @@ public enum AuthorizationError: ErrorType {
             return NSError(domain: kCFErrorDomainCFNetwork as String, code: code, userInfo: [NSLocalizedDescriptionKey: "Incorrect Recover Code"])
         }
     }
-    
-//    case IncorrectEmail
-//    case IncorrectUserName
-//    case IncorrectPassword
-//    case IncorrectToken
 }
