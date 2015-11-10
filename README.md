@@ -1,6 +1,15 @@
-# rwauth-ios
+# RWAuth-ios
 iOS lib written in Swift that takes care about all basic auth features provided by any RW backend.
 
+## Features
+
+- [x] Sign Up
+- [x] Sign In
+- [x] Sign Out
+- [x] Request Recovery Code
+- [x] Set New Password
+- [x] Check Email
+- [x] Manualy Tokens Refresh
 ## Requirements
 
 - iOS 8.0+
@@ -43,11 +52,9 @@ AuthPath.signUp = "/new/signup/path"
 To access auth fuctionality use User's class methods. For example:
 
 ```swift
-var result: Result<Any, NSError>?
 User.signInWithEmail(email, password: password) { (innerResult) -> Void in
-	result = innerResult
+	// do something with innerResult
 }
-// do something with Result
 ```
 #### Result
 
