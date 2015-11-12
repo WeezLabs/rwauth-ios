@@ -1,5 +1,6 @@
 # RWAuth-ios
 [![Cocoapods Compatible](https://img.shields.io/cocoapods/v/RWAuth.svg)](https://img.shields.io/cocoapods/v/RWAuth.svg)
+
 iOS lib written in Swift that takes care about all basic auth features provided by any RW backend.
 
 ## Features
@@ -60,4 +61,4 @@ User.signInWithEmail(email, password: password) { (innerResult) -> Void in
 ```
 #### Result
 
-Most methods have closure argument of type Result<Any, NSError>. That type may contains parsed JSON as [String: AnyObject] or NSError with error discription. 
+Most methods have closure argument of type `Result<Any, NSError>`. That type may contains parsed JSON as `[String: AnyObject]` or `NSError` with error discription. 
