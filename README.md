@@ -1,4 +1,5 @@
 # RWAuth-ios
+[![Cocoapods Compatible](https://img.shields.io/cocoapods/v/RWAuth.svg)](https://img.shields.io/cocoapods/v/RWAuth.svg)
 iOS lib written in Swift that takes care about all basic auth features provided by any RW backend.
 
 ## Features
@@ -10,6 +11,7 @@ iOS lib written in Swift that takes care about all basic auth features provided 
 - [x] Set New Password
 - [x] Check Email
 - [x] Manualy Tokens Refresh
+
 ## Requirements
 
 - iOS 8.0+
