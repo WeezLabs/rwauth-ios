@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "RWAuth"
-  s.version = "1.0.0"
+  s.version = "1.0.1"
   s.license = 'MIT'
   s.summary = "Auth library written in swift"
   
