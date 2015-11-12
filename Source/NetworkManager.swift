@@ -47,6 +47,7 @@ class NetworkManager: NSObject {
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = method.rawValue
         response.request = request
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         
         let bodyData = try? NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions(rawValue: 0))
         
